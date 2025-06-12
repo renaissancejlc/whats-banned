@@ -5,6 +5,7 @@ import Game from './pages/Game';
 import Host from './pages/Host';
 import Join from './pages/Join';
 import GameHome from './pages/GameHome';
+import HostGame from './pages/HostGame';
 import Learn from './pages/Learn';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/host" element={<Host />} />
         <Route path="/join" element={<Join />} />
         <Route path="/gamehome" element={<GameHome />} />
+        <Route path="/hostgame" element={<HostGame />} />
       </Routes>
     </Router>
   );

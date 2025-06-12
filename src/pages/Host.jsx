@@ -34,7 +34,7 @@ export default function Host() {
       >
         <p className="max-w-[550px] mx-auto text-center text-xl leading-relaxed tracking-wide">
           Ready to take control? Launch a session, get your room code, and let players join from their own devices.
-          Answer in real-time, score fast, and crown the sharpest mind. It's like Kahoot — but for breaking blockades.
+          Answer in real-time, score fast, and crown the sharpest mind. It's like Kahoot, but for pointing out war crimes.
         </p>
       </section>
 
