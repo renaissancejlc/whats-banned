@@ -239,11 +239,11 @@ const Learn = () => {
 
 I am writing to express grave concern regarding the ongoing Israeli blockade of Gaza, now in its 18th year. This blockade constitutes not only a humanitarian disaster, but a flagrant violation of international law and basic human decency.
 
-Under Article 33 of the Fourth Geneva Convention, collective punishment is explicitly prohibited—yet over two million civilians in Gaza, half of them children, are being denied freedom of movement, access to clean water, electricity, medical care, and food. The blockade has turned Gaza into what many international observers and UN officials have described as an “open-air prison.”
+Under Article 33 of the Fourth Geneva Convention, collective punishment is explicitly prohibited, yet over two million civilians in Gaza, half of them children, are being denied freedom of movement, access to clean water, electricity, medical care, and food. The blockade has turned Gaza into what many international observers and UN officials have described as an “open-air prison.”
 
 International law demands that even during armed conflict, essential humanitarian aid must be allowed to reach civilian populations. The United Nations, Amnesty International, Human Rights Watch, and the International Committee of the Red Cross have all condemned the blockade. The continued enforcement of it not only violates the Geneva Conventions but also Article 1 of the UN Charter, which upholds the right of peoples to self-determination and protection from domination by force.
 
-We do not permit any other country this level of impunity. No democratic nation should be allowed to impose such prolonged suffering without accountability. This is not a neutral policy—it is a form of collective punishment that targets an entire population for the actions of a few, in blatant defiance of the international rules-based order.
+We do not permit any other country this level of impunity. No democratic nation should be allowed to impose such prolonged suffering without accountability. This is not a neutral policy, it is a form of collective punishment that targets an entire population for the actions of a few, in blatant defiance of the international rules-based order.
 
 I urge you to support immediate and meaningful action to end the blockade, ensure unrestricted humanitarian access, and hold Israel accountable for these violations. Continued inaction is complicity.
 
