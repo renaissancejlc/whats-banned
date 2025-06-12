@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { questions } from '../data/questions';
 import { bonusFacts } from '../data/bonusFacts';
 
 export default function Game() {
+  const navigate = useNavigate();
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionsList, setQuestionsList] = useState([]);
@@ -74,7 +76,7 @@ export default function Game() {
               Try Again
             </button>
             <button
-              onClick={() => window.location.href = '/learn'}
+              onClick={() => navigate('/learn')}
               className="bg-black text-white border-4 border-black font-anton px-8 py-4 ml-4 hover:scale-105 transition"
             >
               Learn More
