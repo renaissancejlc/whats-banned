@@ -81,6 +81,49 @@ export default function Game() {
             >
               Learn More
             </button>
+            <div className="mt-12 w-full max-w-4xl">
+              <h2 className="text-2xl font-anton mb-4 border-b-4 border-black pb-2">Game Review</h2>
+              {questionsList.map((q, index) => (
+                <div
+                  key={index}
+                  className={`mb-12 border-l-[12px] pl-6 ${q.isBonus ? 'border-red-600' : 'border-black'} bg-white`}
+                >
+                  <p className="text-5xl font-anton uppercase leading-tight mb-2">
+                    {index + 1}. {q.question}
+                  </p>
+                  <p className="text-lg font-bold mb-2">
+                    Answer:{' '}
+                    {q.isBonus && q.citation ? (
+                      <a
+                        href={q.citation}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red-600 underline hover:text-red-800"
+                      >
+                        {q.answer ? 'TRUE' : 'FALSE'}
+                      </a>
+                    ) : (
+                      q.answer ? 'BANNED' : 'ALLOWED'
+                    )}{' '}
+                    {q.isBonus ? '(BONUS FACT)' : ''}
+                  </p>
+                  <p className="text-md font-anton text-gray-800 leading-relaxed">
+                    {q.isBonus ? (
+                      <>
+                        <span dangerouslySetInnerHTML={{
+                          __html: q.explanation.replace(
+                            /(https?:\/\/[^\s]+)/g,
+                            '<a href="$1" target="_blank" class="underline text-blue-600 hover:text-blue-800">$1</a>'
+                          )
+                        }} />
+                      </>
+                    ) : (
+                      q.details
+                    )}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <>
