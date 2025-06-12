@@ -81,25 +81,6 @@ export default function Game() {
             >
               Learn More
             </button>
-            <div className="mt-12 w-full max-w-4xl">
-              <h2 className="text-2xl font-anton mb-4 border-b-4 border-black pb-2">Game Review</h2>
-              {questionsList.map((q, index) => (
-                <div
-                  key={index}
-                  className={`mb-12 border-l-[12px] pl-6 ${q.isBonus ? 'border-red-600' : 'border-black'} bg-white`}
-                >
-                  <p className="text-5xl font-anton uppercase leading-tight mb-2">
-                    {index + 1}. {q.question}
-                  </p>
-                  <p className="text-lg font-bold mb-2">
-                    Answer: {q.isBonus ? (q.answer ? 'TRUE' : 'FALSE') : (q.answer ? 'BANNED' : 'ALLOWED')} {q.isBonus ? '(BONUS FACT)' : ''}
-                  </p>
-                  <p className="text-md font-anton text-gray-800 leading-relaxed">
-                    {q.isBonus ? q.explanation : q.details}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         ) : (
           <>
