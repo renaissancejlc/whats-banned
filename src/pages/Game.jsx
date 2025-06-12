@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import Boat from 'lucide-react/dist/esm/icons/boat';
+import { useState, useEffect, useRef } from 'react';
 import { questions } from '../data/questions';
 import BackgroundWrapper from '../compponents/BackgroundWrapper';
 import Header from '../compponents/Header';
@@ -19,36 +18,65 @@ export default function Game() {
   const [shuffledQuestions] = useState(() => shuffleArray(questions));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(0);
   const [showFeedback, setShowFeedback] = useState(null);
   const [timeLeft, setTimeLeft] = useState(10);
   const [showAnswer, setShowAnswer] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
-  
+  const startTimeRef = useRef(Date.now());
 
   const currentQuestion = shuffledQuestions[currentIndex];
 
   useEffect(() => {
     setTimeLeft(10); // reset timer each new question
     setShowAnswer(false);
-    const interval = setInterval(() => {
+    startTimeRef.current = Date.now();
+    let stopped = false;
+    function tick() {
       setTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(interval);
+        if (prev <= 0.05) {
+          stopped = true;
           handleAnswer(null); // time out = no answer
           return 0;
         }
-        return prev - 1;
+        return Math.max(0, prev - 0.05);
       });
-    }, 1000);
-    return () => clearInterval(interval);
+      if (!stopped) {
+        setTimeout(() => {
+          requestAnimationFrame(tick);
+        }, 50);
+      }
+    }
+    // Start timer
+    setTimeout(() => {
+      requestAnimationFrame(tick);
+    }, 50);
+    return () => {
+      stopped = true;
+    };
   }, [currentIndex]);
 
   const handleAnswer = (selected) => {
     if (showFeedback !== null) return;
 
     const isCorrect = selected === currentQuestion.answer;
-    setScore(prev => prev + (isCorrect ? 100 : 0));
-    setShowFeedback(isCorrect ? '✅ Correct' : '❌ Incorrect');
+    let newStreak = isCorrect ? streak + 1 : 0;
+    setStreak(newStreak);
+    const preciseTimeTaken = (Date.now() - startTimeRef.current) / 1000;
+    const maxTime = 10;
+    const clampedTime = Math.min(Math.max(preciseTimeTaken, 0), maxTime);
+    const normalizedSpeed = 1 - (clampedTime / maxTime);
+    let timeBonus = 0;
+    if (isCorrect) {
+      const baseBonus = Math.round(normalizedSpeed ** 2 * 1000);
+      const multiplier = 1 + newStreak * 0.1; // 10% more per correct streak
+      timeBonus = Math.round(baseBonus * multiplier);
+      let feedback = `+${timeBonus} (${preciseTimeTaken.toFixed(2)}s)` + (newStreak > 1 ? ` ×${(multiplier).toFixed(1)} streak!` : '');
+      setShowFeedback(feedback);
+    } else {
+      setShowFeedback('Incorrect');
+    }
+    setScore(prev => prev + timeBonus);
     setShowAnswer(true);
     setUserAnswers(prev => [...prev, { question: currentQuestion.question, correct: isCorrect }]);
   };
@@ -57,6 +85,7 @@ export default function Game() {
     setShowFeedback(null);
     setShowAnswer(false);
     setCurrentIndex((prev) => prev + 1);
+    if (currentIndex + 1 >= TOTAL_QUESTIONS) setStreak(0);
   };
 
   const getMessage = () => {
@@ -97,8 +126,15 @@ export default function Game() {
     <>
       <Header />
       <BackgroundWrapper>
-        <div className="w-full flex flex-col items-center justify-center min-h-screen px-4 text-center font-primary bg-white text-black">
-          <h1 className="text-xl mb-2 text-black font-primary">Solo Mode</h1>
+        <div className="w-full flex flex-col items-center justify-center min-h-screen px-4 text-center font-primary bg-white text-black relative">
+          {showFeedback && (
+            <div className="absolute top-6 right-6 animate-fadeOutUp z-20">
+              <div className="px-4 py-2 bg-blue-600 text-white text-sm md:text-base rounded-full shadow-lg font-semibold tracking-wide font-primary">
+                {showFeedback}
+              </div>
+            </div>
+          )}
+          <h1 className="text-3xl mb-2 text-black font-primary tracking-wide">WHAT'S BANNED?</h1>
           <p className="text-sm text-neutral-600 mb-2 font-primary">Question {currentIndex + 1} of {TOTAL_QUESTIONS}</p>
           <div className="relative w-full max-w-xl h-56 mb-6 perspective pointer-events-auto">
             <div className={`w-full h-full transition-transform duration-700 transform-style preserve-3d ${showAnswer ? 'rotate-y-180' : ''}`} style={{ position: 'relative' }}>
@@ -107,14 +143,14 @@ export default function Game() {
               </div>
               <div className="absolute backface-hidden w-full h-full pointer-events-auto bg-white border border-red-500 rounded-lg flex flex-col items-center justify-center p-6 text-center rotate-y-180 shadow-lg text-black font-primary">
                 {currentQuestion.answer ? (
-                  <div className="flex items-center gap-2 text-green-600">
-                    <CheckCircleIcon className="h-6 w-6" />
-                    <span>Allowed</span>
-                  </div>
-                ) : (
                   <div className="flex items-center gap-2 text-red-600">
                     <XCircleIcon className="h-6 w-6" />
                     <span>Banned</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-green-600">
+                    <CheckCircleIcon className="h-6 w-6" />
+                    <span>Allowed</span>
                   </div>
                 )}
                 <p className="text-sm text-black font-primary">{currentQuestion.details || 'No detail available.'}</p>
@@ -137,7 +173,7 @@ export default function Game() {
                   className="absolute -top-2 left-0 h-full w-6 transition-all duration-100 z-10 flex items-center justify-center"
                   style={{ transform: `translateX(${(timeLeft / 10) * 100}%)` }}
                 >
-                  <Boat className="text-blue-800 h-5 w-5" aria-hidden="true" />
+                  <span className="text-xl">⛵</span>
                 </div>
               </div>
 
@@ -167,13 +203,9 @@ export default function Game() {
             </button>
           )}
 
-          {showFeedback && (
-            <p className="text-xl text-black font-primary">{showFeedback}</p>
-          )}
           <p className="mt-10 text-neutral-400 font-primary">Score: {score}</p>
         </div>
         <style>
-          
           {`.perspective {
       perspective: 1000px;
     }
@@ -185,6 +217,32 @@ export default function Game() {
     }
     .backface-hidden {
       backface-visibility: hidden;
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeOutUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+    .animate-fadeOutUp {
+      animation: fadeOutUp 1s ease-in forwards;
     }
         `}
         </style>
