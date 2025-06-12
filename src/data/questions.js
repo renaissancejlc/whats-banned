@@ -1,75 +1,75 @@
 export const questions = [
   {
     id: 1,
-    question: "Crayons",
+    question: "Crayola",
     answer: true,
-    details: "Last blocked around 2010. Family aid packages including crayons were denied entry."
+    details: "Crayons. Last blocked around 2010. Family aid packages including crayons were denied entry."
   },
   {
     id: 2,
-    question: "Chocolate",
+    question: "Hershey's",
     answer: true,
-    details: "Last blocked in 2024 (ongoing). Frequently cited among banned items."
+    details: "Chocolate. Last blocked in 2024 (ongoing). Frequently cited among banned items."
   },
   {
     id: 3,
-    question: "Jam and fruit preserves",
+    question: "Strawberry jam",
     answer: true,
-    details: "Last blocked around 2010. Repeatedly blocked pre‑2011."
+    details: "Jam and Fruit Preserves. Last blocked around 2010. Repeatedly blocked pre‑2011."
   },
   {
     id: 4,
-    question: "Potato chips and snack foods",
+    question: "Pringles",
     answer: true,
-    details: "Last blocked around 2010. Denied entry alongside other luxury foods."
+    details: "Potato chips and snack foods. Last blocked around 2010. Denied entry alongside other luxury foods."
   },
   {
     id: 5,
-    question: "Biscuits and sweets",
+    question: "Oreo cookies",
     answer: true,
-    details: "Last blocked around 2010. Included in bans on non-essential foods."
+    details: "Biscuits. Last blocked around 2010. Included in bans on non-essential foods."
   },
   {
     id: 6,
-    question: "Spices like cardamom, cumin, coriander, and ginger",
+    question: "Cumin spice packets",
     answer: true,
-    details: "Last blocked around 2010. Spices restricted as potential dual-use items."
+    details: "Spices like cardamom, cumin, coriander and giner. Last blocked around 2010. Spices restricted as potential dual-use items."
   },
   {
     id: 7,
-    question: "Halva",
+    question: "Halva sesame bars",
     answer: true,
     details: "Last blocked around 2010. Traditional sweet listed among banned items."
   },
   {
     id: 8,
-    question: "Seeds and nuts",
+    question: "Sunflower seeds",
     answer: true,
     details: "Last blocked around 2010. Prohibited alongside other “luxury” foods."
   },
   {
     id: 9,
-    question: "Soda and juice",
+    question: "Sprite",
     answer: true,
-    details: "Last blocked around 2010. Denied for years."
+    details: "Soda and juice. Last blocked around 2010. Denied for years."
   },
   {
     id: 10,
-    question: "Pasta or macaroni",
+    question: "Spaghetti",
     answer: true,
-    details: "Last blocked around 2010. Blocked until NGO pressure forced Israel to relent."
+    details: "Pasta or macaroni. Last blocked around 2010. Blocked until NGO pressure forced Israel to relent."
   },
   {
     id: 11,
-    question: "Soccer balls and musical instruments",
+    question: "Soccer balls and violins",
     answer: true,
     details: "Last blocked around 2010. Included in rejected recreational items."
   },
   {
     id: 12,
-    question: "Baby bottles and diapers",
+    question: "Huggies diapers",
     answer: true,
-    details: "Last blocked around 2010. Banned as non-essential."
+    details: "Diapers and baby bottles. Last blocked around 2010. Banned as non-essential."
   },
   {
     id: 13,
@@ -79,13 +79,13 @@ export const questions = [
   },
   {
     id: 14,
-    question: "Sheets, blankets, and mattresses",
+    question: "Bedsheets and comforters",
     answer: true,
     details: "Last blocked around 2010. Household linens blocked."
   },
   {
     id: 15,
-    question: "Shoes",
+    question: "Children’s sneakers",
     answer: true,
     details: "Last blocked around 2010. Basic clothing item restricted."
   },
@@ -103,19 +103,19 @@ export const questions = [
   },
   {
     id: 18,
-    question: "Medical equipment",
+    question: "Hospital-grade defibrillators",
     answer: true,
     details: "Blocked between 2008–2012. Dual-use medical items restricted after 2007."
   },
   {
     id: 19,
-    question: "Construction materials like cement and steel",
+    question: "Cement bags and steel",
     answer: true,
     details: "Ongoing restrictions as of 2025. Heavily limited access continues."
   },
   {
     id: 20,
-    question: "Animal feed like barley",
+    question: "Barley for animals",
     answer: true,
     details: "Blocked in 2024. Barley and other feed were held up for months during an aid operation."
   },
@@ -139,27 +139,21 @@ export const questions = [
   },
   {
     id: 24,
-    question: "Sewing machines",
+    question: "Electric sewing machines",
     answer: true,
     details: "Banned as of June 2024, impacting tailoring and garment repair work."
   },
   {
     id: 25,
-    question: "Musical instruments like guitars",
+    question: "Acoustic guitar",
     answer: true,
     details: "Denied entry around 2007–2010, including violins, keyboards, and drums."
   },
   {
     id: 26,
-    question: "Light bulbs",
+    question: "Light bulbs (60W)",
     answer: true,
     details: "Restricted before 2010. Electrical appliances such as refrigerators and bulbs were blocked."
-  },
-  {
-    id: 27,
-    question: "Toy soccer balls",
-    answer: true,
-    details: "Blocked intermittently between 2007–2010. Toys were deemed non-essential."
   },
   {
     id: 28,
@@ -175,7 +169,7 @@ export const questions = [
   },
   {
     id: 30,
-    question: "Shampoo",
+    question: "Head and Shoulders Shampoo",
     answer: true,
     details: "Barred before 2010. Hygiene products like shampoo and shaving cream were restricted."
   },
@@ -187,7 +181,7 @@ export const questions = [
   },
   {
     id: 32,
-    question: "Reinforcement steel rods",
+    question: "Reinforcement steel rods (rebar)",
     answer: true,
     details: "Still heavily restricted as of 2025. Considered dual-use construction material."
   },
@@ -229,7 +223,7 @@ export const questions = [
   },
   {
     id: 39,
-    question: "Painkillers like paracetamol",
+    question: "Painkillers",
     answer: false,
     details: "Cleared as essential drugs when sealed by WHO or UNRWA and shipped in blister packs."
   },
