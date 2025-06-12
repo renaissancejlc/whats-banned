@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Host() {
+export default function GameHome() {
   const navigate = useNavigate();
   const [animate, setAnimate] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Host() {
           ${animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-[1200ms] ease-out`}
       >
         <h1 className="text-[6.5rem] leading-[1] text-center font-anton max-w-[90vw]">
-          WHAT’S BANNED? <span className="block text-2xl font-mono mt-2">MultiPlayer Mode</span>
+          WHAT’S BANNED? <span className="block text-2xl font-mono mt-2">Solo Edition</span>
         </h1>
       </section>
 
@@ -33,22 +33,23 @@ export default function Host() {
           ${animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-[1400ms] ease-out delay-200`}
       >
         <p className="max-w-[550px] mx-auto text-center text-xl leading-relaxed tracking-wide">
-          Ready to take control? Launch a session, get your room code, and let players join from their own devices.
-          Answer in real-time, score fast, and crown the sharpest mind. It's like Kahoot — but for breaking blockades.
-        </p>
+ Just you, your gut, and a countdown clock. Can you outwit the blockade? Tap below to find out.        </p>
       </section>
 
-      {/* Bottom section for Host Game */}
+      {/* Bottom section for Solo Game Play */}
       <section
         className={`relative z-10 flex flex-col items-center justify-center bg-white px-6 py-24 max-w-5xl mx-auto w-full
           ${animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-[1600ms] ease-out delay-400`}
       >
+        {/* <p className="text-center text-lg font-mono mb-6 max-w-xl">
+          Just you, your gut, and a countdown clock. Can you outwit the blockade? Tap below to find out.
+        </p> */}
         <button
-          onClick={() => navigate('/hostgame')}
+          onClick={() => navigate('/game')}
           className="font-anton text-black text-4xl border-4 border-black px-12 py-6 hover:scale-105 hover:skew-x-[-6deg] transition-transform duration-300 ease-in-out"
-          aria-label="Start Host Game"
+          aria-label="Start Solo Game"
         >
-          Host Game
+          Play Solo
         </button>
       </section>
     </main>
