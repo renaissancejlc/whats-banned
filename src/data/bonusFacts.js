@@ -38,7 +38,7 @@ export const bonusFacts = [
     id: 117,
     question: "Was Israel one of two nations to vote against a UN resolution declaring food a human right?",
     answer: true,
-    explanation: "Yes. The other was the U.S. In 2021, the United Nations General Assembly's Third Committee passed a resolution reaffirming the right to food as a fundamental human right. The vote was 180 in favor, 2 against—only the United States and Israel opposed it. Their opposition stemmed from concerns over the resolution's language and potential implications for trade policy and legal obligations.",
+    explanation: "Yes. The other was the U.S. In 2021, the United Nations General Assembly's Third Committee passed a resolution reaffirming the right to food as a fundamental human right. The vote was 180 in favor, 2 against—only the United States and Israel opposed it.",
     citation: "https://digitallibrary.un.org/record/3951462?ln=en"
   }
 ];
