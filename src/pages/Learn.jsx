@@ -299,7 +299,7 @@ ${userName || "[Your Name]"}`}
 
       {/* Footer */}
       <footer className="px-10 py-10 bg-black text-white text-xs uppercase tracking-wide">
-        Built by Ren Carr · <a href="https://renaissancecarr.com" className="underline">renaissancecarr.com</a>
+       · Built in soldarity · 
       </footer>
     </main>
   );
