@@ -8,6 +8,21 @@ const Learn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Required field check for user_name and user_email
+    const userNameInput = e.target.user_name.value.trim();
+    const userEmailInput = e.target.user_email.value.trim();
+
+    if (!userNameInput || !userEmailInput) {
+      // Custom warning element for missing name or email
+      const warningBox = document.createElement("div");
+      warningBox.innerText = "⚠️ Please fill in your name and email.";
+      warningBox.className =
+        "fixed top-6 left-6 bg-red-600 text-white text-xs font-mono px-4 py-2 tracking-widest z-50 border-2 border-white shadow-md";
+      document.body.appendChild(warningBox);
+      setTimeout(() => warningBox.remove(), 5000);
+      return;
+    }
+
     console.log("Form submitted");
 
     const formData = new FormData(e.target);
@@ -227,14 +242,12 @@ const Learn = () => {
               placeholder="Your Name"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              required
               className="w-full border-b border-black px-4 py-2 bg-transparent"
             />
             <input
               type="email"
               name="user_email"
               placeholder="Your Email"
-              required
               className="w-full border-b border-black px-4 py-2 bg-transparent"
             />
             <input
