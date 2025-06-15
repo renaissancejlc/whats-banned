@@ -227,10 +227,21 @@ const Learn = () => {
               placeholder="Your Name"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
+              required
               className="w-full border-b border-black px-4 py-2 bg-transparent"
             />
-            <input type="email" name="user_email" placeholder="Your Email" className="w-full border-b border-black px-4 py-2 bg-transparent" />
-            <input type="hidden" name="to_emails" value="outreach@un.org, pressoffice@unrwa.org, ops-info@unops.org, ochaopt@un.org, renysportfolio@gmail.com" />
+            <input
+              type="email"
+              name="user_email"
+              placeholder="Your Email"
+              required
+              className="w-full border-b border-black px-4 py-2 bg-transparent"
+            />
+            <input
+              type="hidden"
+              name="to_emails"
+              value="cp@ohchr.org, ocha@un.org, srpalestine@ohchr.org, otp.informationdesk@icc-cpi.int, press@amnesty.org, hrwpress@hrw.org"
+            />
             <textarea
               name="message"
               placeholder="Write your letter here..."
@@ -270,10 +281,12 @@ ${userName || "[Your Name]"}`}
           <div>
             <h3 className="uppercase text-xl mb-2 font-black text-black">Direct Email Recipients</h3>
             <ul className="space-y-2 text-neutral-800">
-              <li><strong>Maher Nasser</strong> – outreach@un.org</li>
-              <li><strong>Philippe Lazzarini</strong> – pressoffice@unrwa.org</li>
-              <li><strong>Jorge Moreira da Silva</strong> – ops-info@unops.org</li>
-              <li><strong>OCHA Gaza Office</strong> – ochaopt@un.org</li>
+              <li><strong>UN Human Rights Council (Complaints)</strong> – cp@ohchr.org</li>
+              <li><strong>OCHA (UN Humanitarian Affairs)</strong> – ocha@un.org</li>
+              <li><strong>UN Special Rapporteur on Palestine</strong> – srpalestine@ohchr.org</li>
+              <li><strong>International Criminal Court – OTP</strong> – otp.informationdesk@icc-cpi.int</li>
+              <li><strong>Amnesty International</strong> – press@amnesty.org</li>
+              <li><strong>Human Rights Watch</strong> – hrwpress@hrw.org</li>
             </ul>
             <p className="mt-4 text-xs text-neutral-500 italic">*Your message may be blind-copied to campaign organizers to ensure delivery.</p>
           </div>
