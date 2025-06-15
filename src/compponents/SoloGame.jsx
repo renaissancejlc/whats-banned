@@ -25,6 +25,7 @@ export default function SoloGame() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [showScoreBurst, setShowScoreBurst] = useState(false);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -43,6 +44,8 @@ export default function SoloGame() {
 
     if (answer === currentQuestion.correctAnswer) {
       setScore(score + 1);
+      setShowScoreBurst(true);
+      setTimeout(() => setShowScoreBurst(false), 1000);
     }
   };
 
@@ -65,36 +68,49 @@ export default function SoloGame() {
   return (
     <BackgroundWrapper>
       <Header />
-      <div className="max-w-3xl mx-auto p-4">
-        {gameOver ? (
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">Game Over</h2>
-            <p className="text-lg">Your Score: {score} / {questions.length}</p>
+      <section className="min-h-screen flex flex-col justify-center px-10 py-24 gap-10">
+        {showScoreBurst && (
+          <div className="fixed top-4 left-4 text-green-600 font-extrabold text-2xl animate-burst pointer-events-none select-none z-50">
+            +{score}
           </div>
-        ) : (
-          <>
-            <h2 className="text-xl font-semibold mb-2">
-              Question {currentQuestionIndex + 1} of {questions.length}
-            </h2>
-            <p className="mb-4">{currentQuestion.question}</p>
-            <div className="space-y-2">
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="col-span-1 md:col-span-1 text-[6vw] md:text-5xl font-extrabold leading-tight">
+            {gameOver ? (
+              <div className="col-span-full">
+                <h2 className="text-[8vw] md:text-[4vw] mb-4">GAME OVER — TESTING REFRESH</h2>
+                <p className="text-xl md:text-2xl">Score: {score} / {questions.length}</p>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-xl md:text-2xl mb-2">
+                  Question {currentQuestionIndex + 1} of {questions.length}
+                </h2>
+                <p className="text-xl md:text-2xl">{currentQuestion.question}</p>
+              </>
+            )}
+          </div>
+
+          {!gameOver && (
+            <div className="col-span-2 space-y-4">
               {currentQuestion.answers.map((answer) => {
                 const isCorrect = answer === currentQuestion.correctAnswer;
                 const isSelected = answer === selectedAnswer;
-                let bgColor = 'bg-gray-200';
+                let bgColor = 'bg-neutral-100 border-2 border-neutral-400';
                 if (showFeedback) {
                   if (isSelected) {
-                    bgColor = isCorrect ? 'bg-green-300' : 'bg-red-300';
+                    bgColor = isCorrect ? 'bg-green-200 border-green-600' : 'bg-red-200 border-red-600';
                   } else if (isCorrect) {
-                    bgColor = 'bg-green-300';
+                    bgColor = 'bg-green-100 border-green-400';
                   }
                 }
+
                 return (
                   <button
                     key={answer}
                     onClick={() => handleAnswerClick(answer)}
                     disabled={showFeedback}
-                    className={`w-full text-left p-3 rounded ${bgColor} flex items-center justify-between`}
+                    className={`${bgColor} w-full text-left px-6 py-4 font-bold text-xl tracking-wide rounded-none transition-transform duration-200 ease-out hover:shadow-xl hover:scale-[1.02] focus:shadow-xl focus:scale-[1.02] flex items-center justify-between`}
                   >
                     <span>{answer}</span>
                     {showFeedback && isSelected && (
@@ -108,10 +124,24 @@ export default function SoloGame() {
                 );
               })}
             </div>
-            <p className="mt-4">Score: {score}</p>
-          </>
-        )}
-      </div>
+          )}
+        </div>
+      </section>
+      <style jsx>{`
+        @keyframes burst {
+          0% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-40px) scale(1.5);
+          }
+        }
+        .animate-burst {
+          animation: burst 1s ease-out forwards;
+        }
+      `}</style>
     </BackgroundWrapper>
   );
 }
